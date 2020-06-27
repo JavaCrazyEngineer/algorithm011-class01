@@ -11,8 +11,10 @@ public class TrappingRainWater {
         if (height == null || height.length == 0) {
             return 0;
         }
-        int left = 0; int right = height.length - 1; // Pointers to both ends of the array.
-        int maxLeft = 0; int maxRight = 0;
+        int left = 0;
+        int right = height.length - 1; // Pointers to both ends of the array.
+        int maxLeft = 0;
+        int maxRight = 0;
 
         int totalWater = 0;
         while (left < right) {
@@ -53,9 +55,41 @@ public class TrappingRainWater {
         return totalWater;
     }
 
-    public static void main(String[] args) {
-        int[] height={0,1,0,2,1,0,1,3,2,1,2,1};
+    /**
+     * @param height
+     * @return
+     */
+    public int maxArea(int[] height) {
+        int area = 0, maxArea = 0;
+        for (int i = 0; i < height.length - 1; ++i) {
+            for (int j = i + 1; j < height.length; ++j) {
+                area = (j - i) * Math.min(height[i], height[j]);
+                maxArea = Math.max(area, maxArea);
+            }
+        }
+        return maxArea;
+    }
 
-        System.out.println(new TrappingRainWater().trap(height));
+    /**
+     *
+     * @param height
+     * @return
+     */
+    public int maxArea1(int[] height) {
+        int max = 0;
+        for (int i = 0, j = height.length - 1; i < j; ) {
+            int minHeight = height[i] < height[j] ? height[i++] : height[j--];
+            int area = (j - i + i) * minHeight;
+            max = Math.max(area, max);
+        }
+        return max;
+    }
+
+
+    public static void main(String[] args) {
+        //int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+
+        System.out.println(new TrappingRainWater().maxArea1(height));
     }
 }
