@@ -33,7 +33,7 @@ public class TwoSum {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
 
-        int[] result = new TwoSum().twoSum(nums, target);
+        int[] result = new HashTwoSum().twoSum(nums, target);
 
         System.out.print(result[0]+":"+result[1]);
     }

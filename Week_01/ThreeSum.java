@@ -7,7 +7,6 @@ import java.util.stream.Stream;
  * Description:三数之和
  *
  * @author G20200343080265
- * @version 1.5.3
  * @date 2020/06/27
  */
 public class ThreeSum {
