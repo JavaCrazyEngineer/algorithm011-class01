@@ -44,4 +44,22 @@ public class SwapPairs {
         n.next = head;
         return n;
     }
+
+
+    public static void main(String[] args) {
+
+        ListNode first=new ListNode(1);
+        ListNode second=new ListNode(2);
+        ListNode third=new ListNode(3);
+        ListNode four=new ListNode(4);
+        first.next=second;
+        second.next=third;
+        third.next=four;
+
+        ListNode head=new SwapPairs().swapPairs(first);
+        while (null!=head){
+            System.out.print(head.val+"\t");
+            head=head.next;
+        }
+    }
 }
