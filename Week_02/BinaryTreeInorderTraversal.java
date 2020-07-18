@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * ClassName: BinaryTreeInorderTraversal
@@ -35,6 +32,35 @@ public class BinaryTreeInorderTraversal {
         inorderTraversal(root.right, inorders);
     }
 
+
+
+
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        if (null != root) {
+            List<Integer> inorders = new ArrayList<>(6);
+            inorderTraversal1(root, inorders);
+            return inorders;
+        }
+        return Collections.emptyList();
+    }
+
+
+    private void inorderTraversal1(TreeNode root, List<Integer> inorders) {
+        if (null == root) {
+            return;
+        }
+        Queue<TreeNode> deque=new ArrayDeque<>();
+        while(root!=null||deque.size()>0){
+            while(null!=root){
+                deque.add(root);
+                root=root.left;
+            }
+            root=deque.poll();
+            inorders.add(root.val);
+            root=root.right;
+        }
+    }
+
     public static void main(String[] args) {
         // [1,null,2,3]
 
@@ -43,6 +69,6 @@ public class BinaryTreeInorderTraversal {
         TreeNode right = new TreeNode(2);
         right.left = left;
         root.right = right;
-        System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+        System.out.println(new BinaryTreeInorderTraversal().inorderTraversal1(root));
     }
 }
