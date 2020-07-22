@@ -33,4 +33,16 @@ public class ReverseKGroup {
         }
         return head;
     }
+
+
+    public static void main(String[] args) {
+        ListNode head=new ListNode(1);
+        ListNode first=new ListNode(2);
+        ListNode second=new ListNode(3);
+        ListNode three=new ListNode(4);
+        second.next=three;
+        first.next=second;
+        head.next=first;
+        new ReverseKGroup().reverseKGroup(head,2);
+    }
 }
