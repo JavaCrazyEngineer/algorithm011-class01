@@ -14,6 +14,7 @@ public class FourNumSum {
      */
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
         int len = nums.length;
         for (int i = 0; i <= len - 4; i++) {
             if (i > 0 && nums[i - 1] == nums[i]) {
@@ -26,7 +27,9 @@ public class FourNumSum {
                 int c = j + 1;
                 int d = len - 1;
                 while (c < d) {
-                    if (c > j + 1 && nums[c - 1] == nums[c]) {
+
+                    if (c > j + 1 && nums[c- 1] == nums[c]) {
+                        c++;
                         continue;
                     }
                     if(nums[i]+nums[j]+nums[c]+nums[d]<target){
@@ -103,8 +106,8 @@ public class FourNumSum {
     }
 
     public static void main(String[] args) {
-        int[] nums={1,3,5,7,9,11,15};
-        int target=32;
+        int[] nums={-1,0,-5,-2,-2,-4,0,1,-2};
+        int target=-9;
         System.out.println(new FourNumSum().fourSum1(nums,target));
         System.out.println(new FourNumSum().fourSum(nums,target));
     }
