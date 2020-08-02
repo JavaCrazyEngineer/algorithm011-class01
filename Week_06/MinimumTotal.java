@@ -30,9 +30,53 @@ public class MinimumTotal {
         int[] ans=new int[triangle.size()+1];
         for(int i=triangle.size()-1;i>=0;i--){
             for(int j=0;j<triangle.get(i).size();j++){
-                ans[j]=Math.min(ans[j],ans[j+1]+triangle.get(i).get(j));
+                ans[j]=Math.min(ans[j],ans[j+1])+triangle.get(i).get(j);
             }
         }
         return ans[0];
+    }
+
+    Integer[][] memo;
+    /**
+     *
+     * @param triangle
+     * @return
+     */
+    public int minimumTotalI(List<List<Integer>> triangle){
+        memo = new Integer[triangle.size()][triangle.size()];
+        return dfs(triangle, 0, 0);
+    }
+
+    /**
+     *
+     * @param triangle
+     * @param i
+     * @param j
+     * @return
+     */
+    private int dfs(List<List<Integer>> triangle, int i, int j) {
+        if(i==triangle.size()){
+            return 0;
+        }
+        if(memo[i][j]!=0){
+            return memo[i][j];
+        }
+        return memo[i][j]=Math.min(dfs(triangle,i+1,j),dfs(triangle,i+1,j+1))+triangle.get(i).get(j);
+    }
+
+    /**
+     *
+     * @param triangle
+     * @return
+     */
+    public int minimumTotalII(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int[][] dp = new int[n + 1][n + 1];
+        for(int i=n-1;i>=0;i--){
+            for(int j=0;j<=i;j++){
+                dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
+            }
+        }
+        return dp[0][0];
     }
 }

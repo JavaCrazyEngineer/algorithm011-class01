@@ -41,4 +41,30 @@ public class Fibonacci {
         memo[N] = helper(N - 1) + helper(N - 2);
         return memo[N];
     }
+
+    /**
+     *
+     * @param n
+     * @return
+     */
+    public int fib3(int n) {
+        int[] memo=new int[n+1];
+        return recursion_fib(n,memo);
+    }
+
+    /**
+     *
+     * @return
+     * @param n
+     * @param memo
+     */
+    private int recursion_fib(int n, int[] memo) {
+        if(n<=1){
+            return n;
+        }
+        if(memo[n]==0){
+            memo[n]=recursion_fib(n-1,memo)+recursion_fib(n-2,memo);
+        }
+        return memo[n];
+    }
 }
