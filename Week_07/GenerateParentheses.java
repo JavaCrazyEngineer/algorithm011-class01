@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,28 @@ public class GenerateParentheses {
 
     public List<String> generateParenthesis(int n) {
 
-        return null;
+        List<String> generateList=new ArrayList<>();
+        generate(0,0,n,"",generateList);
+        return generateList;
+    }
+
+    /**
+     *
+     * @param i
+     * @param j
+     * @param n
+     * @param s
+     * @param generateList
+     */
+    private void generate(int i, int j, int n, String s, List<String> generateList) {
+        if(i==n&&j==n){
+            generateList.add(s);
+        }
+        if(i<n){
+            generate(i+1,j,n,s+"(",generateList);
+        }
+        if(i>j){
+            generate(i,j+1,n,s+")",generateList);
+        }
     }
 }
