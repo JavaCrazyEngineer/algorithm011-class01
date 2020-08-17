@@ -27,7 +27,7 @@ public class CountingBits {
 
         int[] bits=new int[num+1];
         for(int i=1;i<=num;i++){
-            bits[1]+=bits[i&(i-1)]+1;
+            bits[i]+=bits[i&(i-1)]+1;
         }
         return bits;
     }
